@@ -1,3 +1,9 @@
+"""
+An implementation of the game and the game board
+
+@author: Blaise Wang
+modified by: Seunghwan Kang
+"""
 import itertools
 import random
 import numpy as np
@@ -142,9 +148,12 @@ class Board:
                 self.round+=1
                 return -1
             else:
-                black, white = self.get_cell_number()
+                black, white = self.get_cell_count()
                 self.winner = 1 if black > white else 2 if black < white else 0
                 return self.winner
+
+    def print_board(self):
+        print(self.gameboard)
 
 class Game:
     def __init__(self, board: 'Board'):
@@ -185,17 +194,3 @@ class Game:
 if __name__ == '__main__':
     game = Game(Board(8))
     game.start_play([1,2,0])
-    # board = Board(8)
-    # print([a for a in range(0,64)])
-    # while True:
-    #     print('Current player: ', board.get_current_player())
-    #     av_move = board.get_available_moves(board.get_current_player())
-    #     print(board.gameboard)
-    #     print(av_move, end='\t[')
-    #     for m  in av_move:
-    #         m_tp = board.move_to_location(m)
-    #         print(m_tp, end=', ')        
-    #     print(']')
-    #     loc = tuple(map(int,input().split()))
-    #     print(loc)
-    #     board.add_move(loc)
